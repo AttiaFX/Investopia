@@ -32,17 +32,18 @@ def save_value(safe_gas_price, propose_gas_price, suggest_base_fee):
     #Closing the connection
     conn.close()
 
-def send_email_alert():
+def send_email_alert(gas):
     # Alert the user of the occurance of optimum gas fees by email
     alert_recipient = "20086638@mail.wit.ie" 
-    if int(propose_gas_price) < 85:
+    if gas < 85:
         print(f"Sending Gas Fee alerts to {alert_recipient} ... ")
         alert_body = f"ETH Fees have reached a cost-effective rate of {propose_gas_price} at {datetime.datetime.now()}"
         email = yagmail.SMTP(alert_recipient)
         email.send(
             to=alert_recipient,
             subject="ETH Gas Fee Tracker - Threshold Hit!",
-            contents=alert_body)
+            contents=alert_body
+        )
         print("Alert Sent!")
 
 if __name__ == "__main__":    
@@ -55,8 +56,5 @@ if __name__ == "__main__":
     propose_gas_price = data["result"]["ProposeGasPrice"]
     suggest_base_fee = data["result"]["suggestBaseFee"]
     save_value(safe_gas_price, propose_gas_price, suggest_base_fee)
-    send_email_alert()
+    send_email_alert(int(propose_gas_price))
     print(f"High {safe_gas_price}, Medium {propose_gas_price}, Low {suggest_base_fee} ... ")
-    
-
-
