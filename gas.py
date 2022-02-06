@@ -35,7 +35,7 @@ def save_value(safe_gas_price, propose_gas_price, suggest_base_fee):
 def send_email_alert(gas):
     # Alert the user of the occurance of optimum gas fees by email
     alert_recipient = "20086638@mail.wit.ie" 
-    if gas < 85:
+    if gas < 200:
         print(f"Sending Gas Fee alerts to {alert_recipient} ... ")
         alert_body = f"ETH Fees have reached a cost-effective rate of {propose_gas_price} GWEI at {datetime.datetime.now()}"
         email = yagmail.SMTP(alert_recipient)
