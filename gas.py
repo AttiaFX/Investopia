@@ -37,7 +37,7 @@ def send_email_alert(gas):
     alert_recipient = "20086638@mail.wit.ie" 
     if gas < 85:
         print(f"Sending Gas Fee alerts to {alert_recipient} ... ")
-        alert_body = f"ETH Fees have reached a cost-effective rate of {propose_gas_price} at {datetime.datetime.now()}"
+        alert_body = f"ETH Fees have reached a cost-effective rate of {propose_gas_price} GWEI at {datetime.datetime.now()}"
         email = yagmail.SMTP(alert_recipient)
         email.send(
             to=alert_recipient,
@@ -57,4 +57,4 @@ if __name__ == "__main__":
     suggest_base_fee = data["result"]["suggestBaseFee"]
     save_value(safe_gas_price, propose_gas_price, suggest_base_fee)
     send_email_alert(int(propose_gas_price))
-    print(f"High {safe_gas_price}, Medium {propose_gas_price}, Low {suggest_base_fee} ... ")
+    print(f"High:{safe_gas_price}, Medium:{propose_gas_price}, Low:{suggest_base_fee}")
