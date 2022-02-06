@@ -54,8 +54,9 @@ if __name__ == "__main__":
     safe_gas_price = data["result"]["SafeGasPrice"]
     propose_gas_price = data["result"]["ProposeGasPrice"]
     suggest_base_fee = data["result"]["suggestBaseFee"]
+    save_value(safe_gas_price, propose_gas_price, suggest_base_fee)
     send_email_alert()
     print(f"High {safe_gas_price}, Medium {propose_gas_price}, Low {suggest_base_fee} ... ")
-    save_value(safe_gas_price, propose_gas_price, suggest_base_fee)
+    
 
 
