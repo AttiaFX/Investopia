@@ -3,6 +3,7 @@ import os
 import psycopg2
 import datetime
 import yagmail
+from keyring import get_keyring
 
 def save_value(safe_gas_price, propose_gas_price, suggest_base_fee):
     #Establishing the connection
@@ -47,6 +48,7 @@ def send_email_alert(gas):
         print("Alert Sent!")
 
 if __name__ == "__main__":    
+    print("Keyring method: " + str(get_keyring()))
     # remember to set the ETHERSCAN_API_TOKEN variable
     api_token = os.environ["ETHERSCAN_API_TOKEN"]
     url = f"https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey={api_token}"
