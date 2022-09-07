@@ -26,7 +26,7 @@ def save_value(safe_gas_price, propose_gas_price, suggest_base_fee):
     sql=f"INSERT INTO gas (safe_gas_price, propose_gas_price, suggest_base_fee, date) VALUES ({safe_gas_price}, {propose_gas_price}, {suggest_base_fee}, '{datetime.datetime.now()}');"
     cursor.execute(sql)
 
-    # Commit your changes in the database
+    # Commit database changes
     conn.commit()
     print(f"safe_gas_price:{safe_gas_price}, propose_gas_price:{propose_gas_price}, suggest_base_fee:{suggest_base_fee}")
 
